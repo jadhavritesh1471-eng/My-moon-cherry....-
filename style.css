@@ -1,41 +1,32 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #ffe6e6;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-}
-.container {
-    text-align: center;
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-h1 {
-    color: #ff4d6d;
-    font-size: 2.5rem;
-}
-.buttons {
-    margin-top: 20px;
-}
-button {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-#yesBtn {
-    background-color: #ff4d6d;
-    color: white;
-}
-#noBtn {
-    background-color: #ccc;
-    color: #333;
-    position: absolute;
-}
+
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const mainCard = document.getElementById('mainCard');
+const loveLetterCard = document.getElementById('loveLetterCard');
+const bgMusic = document.getElementById('bgMusic');
+
+// मोबाईलसाठी 'No' बटन पळवण्याचा कोड
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+});
+
+// कॉम्प्युटरसाठी 'No' बटन पळवण्याचा कोड
+noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+});
+
+// 'Yes' बटन दाबल्यावर म्युझिक आणि लव्ह लेटर दाखवणे
+yesBtn.addEventListener('click', () => {
+    mainCard.classList.add('hide'); // विचारणारी स्क्रीन लपवा
+    loveLetterCard.classList.remove('hide'); // लव्ह लेटर दाखवा
+    bgMusic.play().catch(error => {
+        console.log("Music play blocked by browser. User interaction needed.");
+    }); // गाणे चालू करा
+});

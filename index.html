@@ -3,35 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do You Love Me? 🥺</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Do You Love Me? 🥺❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffe6e6, #ffb3c1);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(255, 77, 109, 0.2);
+            max-width: 85%;
+            width: 320px;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-top: 25px;
+            position: relative;
+            height: 60px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+        }
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+        #noBtn {
+            background-color: #ccc;
+            color: #333;
+            position: absolute;
+        }
+        .envelope {
+            font-size: 3.5rem;
+            animation: float 2s ease-in-out infinite;
+        }
+        .love-title {
+            color: #d90429;
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+        .love-message {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        /* फोटो सुंदर दिसण्यासाठी डिझाईन */
+        #loveImage {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            margin-top: 10px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
 <body>
+
     <!-- बॅकग्राउंड संगीत -->
     <audio id="bgMusic" loop>
         <source src="https://soundhelix.com" type="audio/mpeg">
     </audio>
 
-    <!-- विचारणारी मुख्य स्क्रीन -->
-    <div class="container" id="mainCard">
-        <h1 id="question">Do you love me? 🥺❤️</h1>
-        <div class="buttons">
-            <button id="yesBtn">Yes ❤️</button>
-            <button id="noBtn">No 💔</button>
+    <!-- मुख्य स्क्रीन -->
+    <div class="container" id="mainBox">
+        <div id="askScreen">
+            <h1 id="question">Do you love me? 🥺❤️</h1>
+            <div class="buttons">
+                <button id="yesBtn">Yes ❤️</button>
+                <button id="noBtn" style="left: 170px; top: 0px;">No 💔</button>
+            </div>
+        </div>
+        
+        <!-- 'Yes' दाबल्यावर उघडणारे लव्ह लेटर आणि फोटो -->
+        <div id="loveLetterScreen" style="display: none;">
+            <div class="envelope">💌</div>
+            <h1 class="love-title">Yayyy! I Knew It! 🥰 ✨</h1>
+            <p class="love-message">
+                तुम्ही माझ्या आयुष्यातील सर्वात सुंदर गोष्ट आहात! <br>
+                माझ्यावर नेहमी असंच प्रेम करत राहा. <br>
+                <strong>Happy Valentine's Day! Forever & Always! 💖</strong>
+            </p>
+            <!-- तुमचा फोटो इथे दिसेल -->
+            <img id="loveImage" src="my-photo.jpg" alt="Our Special Memory">
         </div>
     </div>
 
-    <!-- 'Yes' दाबल्यावर उघडणारे क्यूट लव्ह लेटर -->
-    <div class="container hide" id="loveLetterCard">
-        <div class="envelope">💌</div>
-        <h1 class="love-title">Yayyy! I Knew It! 🥰 ✨</h1>
-        <p class="love-message">
-            तुम्ही माझ्या आयुष्यातील सर्वात सुंदर गोष्ट आहात! <br>
-            माझ्यावर नेहमी असंच प्रेम करत राहा. <br>
-            **Happy Valentine's Day! Forever & Always! 💖**
-        </p>
-    </div>
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const askScreen = document.getElementById('askScreen');
+        const loveLetterScreen = document.getElementById('loveLetterScreen');
+        const bgMusic = document.getElementById('bgMusic');
 
-    <script src="script.js"></script>
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+        noBtn.addEventListener('mouseover', moveButton);
+
+        yesBtn.addEventListener('click', () => {
+            askScreen.style.display = 'none';
+            loveLetterScreen.style.display = 'block';
+            bgMusic.play().catch(e => console.log("Music blocked"));
+        });
+    </script>
 </body>
 </html>

@@ -1,26 +1,68 @@
-const noBtn = document.getElementById('noBtn');
-const yesBtn = document.getElementById('yesBtn');
-const question = document.getElementById('question');
-
-// मोबाईलवर बोट लावताच (Touch) बटन पळण्यासाठी:
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); // मोबाईलवर क्लिक होण्यापासून रोखण्यासाठी
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-});
-
-// कॉम्प्युटरसाठी:
-noBtn.addEventListener('mouseover', () => {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-});
-
-yesBtn.addEventListener('click', () => {
-    question.innerHTML = "I love you too!!! ❤️✨";
-    noBtn.style.display = 'none';
-    yesBtn.style.display = 'none';
-});
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffe6e6, #ffb3c1);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    overflow: hidden;
+}
+.container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(255, 77, 109, 0.2);
+    max-width: 85%;
+    transition: all 0.5s ease;
+}
+h1 {
+    color: #ff4d6d;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+.buttons {
+    margin-top: 25px;
+}
+button {
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+}
+#noBtn {
+    background-color: #ccc;
+    color: #333;
+    position: absolute;
+}
+.hide {
+    display: none !important;
+}
+.envelope {
+    font-size: 4rem;
+    animation: float 2s ease-in-out infinite;
+}
+.love-title {
+    color: #d90429;
+    font-size: 1.8rem;
+}
+.love-message {
+    font-size: 1.1rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}

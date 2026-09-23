@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do You Love Me?</title>
+    <title>Do You Love Me? 🥺</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1 id="question">Do you love me? 🥺</h1>
+    <!-- बॅकग्राउंड म्युझिक (तुम्ही तुमचे आवडते गाणे लावू शकता) -->
+    <audio id="bgMusic" loop>
+        <source src="https://soundhelix.com" type="audio/mpeg">
+    </audio>
+
+    <!-- विचारणारी मुख्य स्क्रीन -->
+    <div class="container" id="mainCard">
+        <h1 id="question">Do you love me? 🥺❤️</h1>
         <div class="buttons">
             <button id="yesBtn">Yes ❤️</button>
             <button id="noBtn">No 💔</button>
         </div>
     </div>
+
+    <!-- 'Yes' दाबल्यावर उघडणारे क्यूट लव्ह लेटर (सरप्राईज) -->
+    <div class="container hide" id="loveLetterCard">
+        <div class="envelope">💌</div>
+        <h1 class="love-title">Yayyy! I Knew It! 🥰 ✨</h1>
+        <p class="love-message">
+            तुम्ही माझ्या आयुष्यातील सर्वात सुंदर गोष्ट आहात! <br>
+            माझ्यावर नेहमी असंच प्रेम करत राहा. <br>
+            **Happy Valentine's Day! Forever & Always! 💖**
+        </p>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
